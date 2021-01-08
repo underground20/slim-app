@@ -14,6 +14,7 @@ services:
       dockerfile: php-fpm.docker
     volumes:
       - ./:/var/www/app
+    working_dir: /var/www/app
     environment:
       - XDEBUG_CONFIG="idekey=${IDE_KEY} remote_enable=1 remote_host=${XDEBUG_REMOTE_IP}
   mysql:
