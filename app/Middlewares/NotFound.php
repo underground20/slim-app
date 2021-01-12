@@ -18,7 +18,7 @@ class NotFound implements MiddlewareInterface
             return $handler->handle($request);
         }
         catch (HttpNotFoundException $exception) {
-            return  new JsonResponse(['404' => 'Route not found']);
+            return  new JsonResponse(['404' => 'Route not found'], 404);
         }
     }
 }
