@@ -19,7 +19,8 @@ class IndexAction implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $id = $this->taskRepo->createTask('watch');
-        return new HtmlResponse('Create task');
+        $name = $request->getAttribute('name');
+        $id = $this->taskRepo->createTask($name);
+        return new HtmlResponse('Create task: №' . $id);
     }
 }
