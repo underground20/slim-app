@@ -18,9 +18,9 @@ return [
         'connection' => [
             'driver' => 'pdo_mysql',
             'host' => 'mysql',
-            'dbname' => 'app',
-            'user' => 'admin',
-            'password' => 'stalker123'
+            'dbname' => getenv('DB_NAME'),
+            'user' => getenv('DB_USER'),
+            'password' => getenv('DB_PASSWORD')
         ]
     ],
 ];
