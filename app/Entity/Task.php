@@ -42,4 +42,14 @@ class Task
     {
         $this->name = $name;
     }
+
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    public function setUserId($userId): void
+    {
+        $this->userId = $userId;
+    }
 }
