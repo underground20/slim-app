@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Task;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\Expr\Join;
 
 class TaskRepository
 {
@@ -23,5 +25,14 @@ class TaskRepository
         $this->em->flush();
 
         return $task->getId();
+    }
+
+    public function findAll()
+    {
+        $builder = $this->em->createQueryBuilder();
+        return $builder->select('task')
+            ->from(Task::class, 'task')
+            ->getQuery()
+            ->getArrayResult();
     }
 }

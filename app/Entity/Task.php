@@ -23,7 +23,7 @@ class Task
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userId")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $userId;
