@@ -30,8 +30,9 @@ class TaskRepository
     public function findAll()
     {
         $builder = $this->em->createQueryBuilder();
-        return $builder->select('task')
+        return $builder->select('task.id, task.name, user.name as user_name')
             ->from(Task::class, 'task')
+            ->innerjoin(User::class, 'user', Join::WITH, 'task.userId=user.id')
             ->getQuery()
             ->getArrayResult();
     }
