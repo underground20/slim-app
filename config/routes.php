@@ -4,6 +4,7 @@ use Slim\App;
 use App\Action\TaskCreateAction;
 use App\Action\TaskViewAction;
 use App\Action\TaskListAction;
+use App\Action\TaskDeleteAction;
 use Slim\Routing\RouteCollectorProxy;
 
 return static function (App $app) {
@@ -14,5 +15,7 @@ return static function (App $app) {
             ->setName('view');
         $group->post('/create/user', TaskCreateAction::class)
             ->setName('create');
+        $group->get('/delete', TaskDeleteAction::class)
+            ->setName('delete');
     });
 };
