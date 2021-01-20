@@ -49,4 +49,24 @@ class TaskRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    public function findOneByUser($userId, $id)
+    {
+        return $this->builder->select('task.id, task.name, user.name as user_name')
+            ->from(Task::class, 'task')
+            ->innerjoin(User::class, 'user', Join::WITH, 'task.userId=user.id')
+            ->where('user.id = :userId')
+            ->setParameter(':userId', $userId)
+            ->andWhere('task.id = :id')
+            ->setParameter(':id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function delete($id)
+    {
+        $task = $this->em->find(Task::class, $id);
+        $this->em->remove($task);
+        $this->em->flush();
+    }
 }
