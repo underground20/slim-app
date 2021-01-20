@@ -22,7 +22,7 @@ class TaskViewAction implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $id = $request->getAttribute('id');
-        $tasks = $this->taskRepo->findOne($id);
+        $tasks = $this->taskRepo->findAllByUser($id);
         return new JsonResponse($tasks, 200, [], JSON_PRETTY_PRINT);
     }
 }

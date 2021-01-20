@@ -39,7 +39,7 @@ class TaskRepository
             ->getArrayResult();
     }
 
-    public function findOne($id)
+    public function findAllByUser($id)
     {
         return $this->builder->select('task.id, task.name, user.name as user_name')
             ->from(Task::class, 'task')
