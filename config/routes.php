@@ -1,5 +1,6 @@
 <?php
 
+use App\Action\TaskCreateAction;
 use App\Action\TaskViewAction;
 use Slim\App;
 use App\Action\TaskListAction;
@@ -9,5 +10,6 @@ return static function (App $app) {
     $app->group('/tasks', function (RouteCollectorProxy $group) {
         $group->get('/',TaskListAction::class)->setName('index');
         $group->get('/view/user/{id}', TaskViewAction::class)->setName('view');
+        $group->get('/create/user/{id}', TaskCreateAction::class)->setName('create');
     });
 };
