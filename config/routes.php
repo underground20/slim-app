@@ -15,7 +15,7 @@ return static function (App $app) {
             ->setName('view');
         $group->post('/create/user', TaskCreateAction::class)
             ->setName('create');
-        $group->get('/delete', TaskDeleteAction::class)
+        $group->delete('/delete', TaskDeleteAction::class)
             ->setName('delete');
     });
 };
