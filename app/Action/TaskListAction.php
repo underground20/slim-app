@@ -3,12 +3,12 @@
 namespace App\Action;
 
 use App\Repository\TaskRepository;
-use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class IndexAction implements RequestHandlerInterface
+class TaskListAction implements RequestHandlerInterface
 {
     private $taskRepo;
 
@@ -19,8 +19,7 @@ class IndexAction implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $name = $request->getAttribute('name');
-        $id = $this->taskRepo->createTask($name);
-        return new HtmlResponse('Create task: №' . $id);
+        $tasks = $this->taskRepo->findAll();
+        return new JsonResponse($tasks, 200, [], JSON_PRETTY_PRINT);
     }
 }

@@ -22,6 +22,12 @@ class Task
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userId")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $userId;
+
     public function getId()
     {
         return $this->id;
@@ -35,5 +41,15 @@ class Task
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    public function setUserId($userId): void
+    {
+        $this->userId = $userId;
     }
 }
